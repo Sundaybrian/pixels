@@ -130,3 +130,4 @@ CRISPY_TEMPLATE_PACK='bootstrap4'
 
 # hijacking django and redirecting user to the homepage
 LOGIN_REDIRECT_URL='insta-home'
+LOGIN_URL='login'
