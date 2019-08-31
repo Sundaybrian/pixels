@@ -20,8 +20,8 @@ def register(request):
 
 @login_required
 def profile(request):
-    usrForm=UserUpdateForm()
-    profForm=ProfileUpdateForm()
+    usrForm=UserUpdateForm(instance=request.user)
+    profForm=ProfileUpdateForm(instance=request.user.profile)
 
     context={
         'usrForm':usrForm,
