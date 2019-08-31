@@ -1,12 +1,13 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
+from django.db.models import Q
 
 # Create your models here.
 
 class Image(models.Models):
-    image_name=models.CharField(max_length=100)
-    image_caption=models.TextField()
+    img_name=models.CharField(max_length=100)
+    img_caption=models.TextField()
     image=models.ImageField(upload_to='images/',default='')
     date_posted=models.DateTimeField(auto_now_add=True)
     last_modified=models.DateTimeField(default=timezone.now)
@@ -29,6 +30,9 @@ class Image(models.Models):
     @classmethod
     def search(cls,search_term):
         '''
-        method that returns 
+        method that returns photos based on a search query
         '''
+
+        imgs=cls.objects.filter(Q(img_name__icontains=search_term)  | Q(author__username__icontains=search_term)  | Q(img_caption__icontains=search_term)  | Q(tags__tag_name__icontains=search_term))
+
 
