@@ -11,3 +11,13 @@ class UserRegisterForm(UserCreationForm):
 
         # field i want in the form in order
         fields=['username','email','password1','password2']
+
+class UserUpdateForm(forms.ModelForm):
+    '''
+    update username and email of the user 
+    '''
+    email=forms.EmailField()
+
+    class Meta:
+        model=User
+        fields=['username','email']        
