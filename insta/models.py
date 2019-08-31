@@ -5,16 +5,16 @@ from django.db.models import Q
 
 # Create your models here.
 
-class Image(models.Models):
+class Image(models.Model):
     img_name=models.CharField(max_length=100)
     img_caption=models.TextField()
     image=models.ImageField(upload_to='images/',default='')
     date_posted=models.DateTimeField(auto_now_add=True)
     last_modified=models.DateTimeField(default=timezone.now)
     author=models.ForeignKey(User,on_delete=models.CASCADE)
-    likes=models.ForeignKey(Like)
-    comments=models.ForeignKey(Comment)
-    tags=models.ManyToManyField(tags)
+    # likes=models.ForeignKey(Like)
+    # comments=models.ForeignKey(Comment)
+    # tags=models.ManyToManyField(tags)
 
     def __str__(self):
         return f'Image{self.img_name}--{self.img_caption}'
@@ -68,7 +68,7 @@ class tags(models.Model):
     def __str__(self):
         return self.tag_name
 
-class Like(model.Models):
+class Like(models.Model):
     '''
     models to create likes to bind to photos
     '''
@@ -78,9 +78,10 @@ class Like(model.Models):
         '''
         saving a like
         '''
-    pass
+        
+    
 
-class Comment(models.Models):
+class Comment(models.Model):
     '''
     model to create comments
     '''   
