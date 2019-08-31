@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .forms import UserRegisterForm
+from .forms import UserRegisterForm,UserUpdateForm,ProfileUpdateForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
@@ -20,7 +20,14 @@ def register(request):
 
 @login_required
 def profile(request):
-    return render(request,'user/profile.html')
+    usrForm=UserUpdateForm()
+    profForm=ProfileUpdateForm()
+
+    context={
+        'usrForm':usrForm,
+        'profForm':profForm
+    }
+    return render(request,'user/profile.html',context)
 
 
 
