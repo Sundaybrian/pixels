@@ -56,7 +56,7 @@ class Image(models.Model):
         method that returns photos based on a search query
         '''
 
-        imgs=cls.objects.filter(Q(img_name__icontains=search_term)  | Q(author__username__icontains=search_term)  | Q(img_caption__icontains=search_term)  | Q(tags__tag_name__icontains=search_term))
+        imgs=cls.objects.filter(Q(img_name__icontains=search_term) |Q(author__username__icontains=search_term)  | Q(img_caption__icontains=search_term)  | Q(tags__tag_name__icontains=search_term))
 
 
 class tags(models.Model):
