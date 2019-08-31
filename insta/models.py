@@ -93,6 +93,15 @@ class Comment(models.Models):
         self.save()
 
     @classmethod
+    def delete_comment(cls,comment_id):
+        '''
+        method to delete a comment
+        '''
+        comment=cls.objects.get(pk=comment_id)
+        comment.delete()    
+        
+
+    @classmethod
     def get_comments(cls,img_id):
         '''
         method to fetch all comments associated with a given img
