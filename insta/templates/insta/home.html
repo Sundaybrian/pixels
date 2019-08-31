@@ -6,6 +6,7 @@
       {% for post in posts %}
       <div class="card mb-3">
         <div class="card-header">
+          <img src="{{post.author.profile.profile_photo.url}}" class="rounded-circle" alt="">
           <h5 class="card-title">{{post.title}}</h5>
         </div>
         <img src="{{post.poster_path}}" class="img-top">

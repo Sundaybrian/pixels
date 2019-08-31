@@ -6,7 +6,6 @@ from django.db.models import Q
 
 # Create your models here.
 
-
 class tags(models.Model):
     '''
     models to create #tags to bind to photos
@@ -19,13 +18,11 @@ class tags(models.Model):
 
 class Image(models.Model):
     img_name=models.CharField(max_length=100)
-    img_caption=models.TextField()
+    img_caption=models.TextField(blank=True)
     poster=models.ImageField(upload_to='posters/',default='')
     date_posted=models.DateTimeField(auto_now_add=True)
     last_modified=models.DateTimeField(default=timezone.now)
     author=models.ForeignKey(User,on_delete=models.CASCADE)
-    # likes=models.ForeignKey(Like)
-    # comment=models.ForeignKey(Comment)
     tags = models.ManyToManyField(tags)
 
     def __str__(self):
@@ -71,25 +68,14 @@ class Image(models.Model):
         imgs=cls.objects.filter(Q(img_name__icontains=search_term) |Q(author__username__icontains=search_term)  | Q(img_caption__icontains=search_term)  | Q(tags__tag_name__icontains=search_term))
 
 
-# class Like(models.Model):
-#     '''
-#     models to create likes to bind to photos
-#     '''
-#     like=models.IntegerField()
-
-#     def save_like(self):
-#         '''
-#         saving a like
-#         '''
-#         pass
-        
-    
-
 class Comment(models.Model):
     '''
     model to create comments
-    '''   
+    '''  
+    image=models.ForeignKey(Image,on_delete=models.CASCADE),
+    comment_owner=models.ForeignKey(User,blank=True,on_delete=models.CASCADE)
     comment_content=models.TextField()
+    
 
     def save_comment(self):
         '''
@@ -112,7 +98,34 @@ class Comment(models.Model):
         method to fetch all comments associated with a given img
         '''    
         comments=cls.objects.filter(pk=img_id).all()
-        return comments
+        return comments 
+
+    def __str__(self):
+        return self.comment          
+
+
+class Like(models.Model):
+    '''
+    models to create likes to bind to photos
+    '''
+    liker=models.ForeignKey(User,on_delete=models.CASCADE)
+    image=models.ForeignKey(Image,on_delete=models.CASCADE)
+
+    def save_like(self):
+        '''
+        saving a like
+        '''
+        pass
+
+    def like_count():
+        '''
+        '''
+        pass
+
+        
+    
+
+
 
 
 
