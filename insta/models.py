@@ -6,16 +6,27 @@ from django.db.models import Q
 
 # Create your models here.
 
+
+class tags(models.Model):
+    '''
+    models to create #tags to bind to photos
+    '''
+    tag_name=models.CharField(max_length=30)
+
+    def __str__(self):
+        return self.tag_name
+
+
 class Image(models.Model):
     img_name=models.CharField(max_length=100)
     img_caption=models.TextField()
-    image=models.ImageField(upload_to='images/',default='')
+    poster=models.ImageField(upload_to='posters/',default='')
     date_posted=models.DateTimeField(auto_now_add=True)
     last_modified=models.DateTimeField(default=timezone.now)
     author=models.ForeignKey(User,on_delete=models.CASCADE)
     # likes=models.ForeignKey(Like)
-    # comments=models.ForeignKey(Comment)
-    # tags=models.ManyToManyField(tags)
+    # comment=models.ForeignKey(Comment)
+    tags = models.ManyToManyField(tags)
 
     def __str__(self):
         return f'Image{self.img_name}--{self.img_caption}'
@@ -60,25 +71,17 @@ class Image(models.Model):
         imgs=cls.objects.filter(Q(img_name__icontains=search_term) |Q(author__username__icontains=search_term)  | Q(img_caption__icontains=search_term)  | Q(tags__tag_name__icontains=search_term))
 
 
-class tags(models.Model):
-    '''
-    models to create #tags to bind to photos
-    '''
-    tag_name=models.CharField(max_length=30)
+# class Like(models.Model):
+#     '''
+#     models to create likes to bind to photos
+#     '''
+#     like=models.IntegerField()
 
-    def __str__(self):
-        return self.tag_name
-
-class Like(models.Model):
-    '''
-    models to create likes to bind to photos
-    '''
-    like=models.IntegerField()
-
-    def save_like(self):
-        '''
-        saving a like
-        '''
+#     def save_like(self):
+#         '''
+#         saving a like
+#         '''
+#         pass
         
     
 
