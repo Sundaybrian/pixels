@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,5 +9,11 @@
 </head>
 <body>
     <h1>Welcome to insta hombre</h1>  
+    {% for post in posts %}
+        <h1>{{post.title}}</h1>
+        <p>Posted on {{post.date_posted}} by {{post.username}}</p>
+        <img src="{{post.poster_path }}" alt="" srcset="">
+    
+    {% endfor %}
 </body>
 </html>
