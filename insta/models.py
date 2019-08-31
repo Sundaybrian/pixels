@@ -3,6 +3,7 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from django.db.models import Q
 
+
 # Create your models here.
 
 class Image(models.Model):
