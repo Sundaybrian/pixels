@@ -17,6 +17,20 @@ class Image(models.Models):
 
     def __str__(self):
         return f'Image{self.image_name}--{self.image_caption}'
+        
+
+    def save_img(self):
+        '''
+        method to save an image
+        '''
+        self.save()
+
+    def delete_img(self):
+        '''
+        method to delete an image
+        '''
+        self.delete()    
+
 
     @classmethod
     def get_imgs(cls):
