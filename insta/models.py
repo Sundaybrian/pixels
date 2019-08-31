@@ -12,8 +12,8 @@ class Image(models.Models):
     date_posted=models.DateTimeField(auto_now_add=True)
     last_modified=models.DateTimeField(default=timezone.now)
     author=models.ForeignKey(User,on_delete=models.CASCADE)
-    likes=models.ManyToManyField(Like)
-    comments=models.ManyToManyField(Comment)
+    likes=models.ForeignKey(Like)
+    comments=models.ForeignKey(Comment)
     tags=models.ManyToManyField(tags)
 
     def __str__(self):
@@ -99,7 +99,7 @@ class Comment(models.Models):
         '''
         comment=cls.objects.get(pk=comment_id)
         comment.delete()    
-        
+
 
     @classmethod
     def get_comments(cls,img_id):
