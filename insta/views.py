@@ -48,7 +48,7 @@ class PostUpdateView(LoginRequiredMixin,UpdateView):
     '''
     model=Image
     template_name='insta/post-update.html'
-    fields=['img_name','img_caption']
+    fields=['img_name','img_caption','poster']
 
     def form_valid(self,form):
         form.instance.author=self.request.user
