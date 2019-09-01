@@ -1,0 +1,30 @@
+{% extends 'insta/base.html'%}  
+{% block content %}
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+  
+      <div class="card mb-3">
+        <div class="card-header">
+          <img src="{{post.author.profile.profile_photo.url}}" class="rounded-circle" alt="">
+          <h5 class="card-title">
+            {{post.img_name}}
+          </h5>
+        </div>
+        <img src="{{post.poster.url}}" class="card-img-top">
+          <div class="card-footer text-muted">
+            <p>Posted on {{post.date_posted}} by {{post.author.username}}</p>
+            <p> {% autoescape on %}
+                {{post.img_caption| safe}}
+               {% endautoescape %}
+              </p>
+  
+        </div>
+    </div>
+
+
+  </div>
+  <div class="col-md-2"></div>
+</div>
+   
+{% endblock content %}    

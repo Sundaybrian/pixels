@@ -4,7 +4,7 @@ from django.contrib import messages
 from .models import Image,Comment,Like
 from django.contrib.auth.decorators import login_required
 from .forms import NewInstaPost,AddTagsToPost
-
+from django.core.exceptions import ObjectDoesNotExist
 # Create your views here.
 
 def home(request):
@@ -39,14 +39,10 @@ def newInstaPost(request):
 def postDetail(request,pk):
     '''
     view function that leads to a single post
+    #     
     '''
-    try:
-        img=Image.objects.get(id=pk)
-        
-    except ValueError:
-        raise Http404()
-        assert False
-    
+    img=Image.get_img_by_id(pk)
+   
     return render(request,'insta/post-detail.html',{'post':img})
 
 

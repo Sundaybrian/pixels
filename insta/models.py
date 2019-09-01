@@ -3,6 +3,8 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from django.db.models import Q
 from tinymce.models import HTMLField
+from django.core.exceptions import ObjectDoesNotExist
+from django.http import Http404
 
 
 # Create your models here.
@@ -67,6 +69,21 @@ class Image(models.Model):
         '''
 
         imgs=cls.objects.filter(Q(img_name__icontains=search_term) |Q(author__username__icontains=search_term)  | Q(img_caption__icontains=search_term)  | Q(tags__tag_name__icontains=search_term))
+
+    @classmethod
+    def get_img_by_id(cls,id):
+
+
+        try:
+            img=Image.objects.get(id=id)
+            
+        except ObjectDoesNotExist:
+             raise Http404()
+             assert False
+
+        return img    
+        
+            
 
 
 class Comment(models.Model):
