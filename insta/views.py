@@ -62,7 +62,7 @@ class PostUpdateView(LoginRequiredMixin,UserPassesTestMixin,UpdateView):
         return self.request.user==post.author
 
 
-class PostDeleteView(LoginRequiredMixin,UserPassesTestMixin,UpdateView):
+class PostDeleteView(LoginRequiredMixin,UserPassesTestMixin,DeleteView):
     '''
     class view method to update the post form
         declare the model to be affected
@@ -70,6 +70,7 @@ class PostDeleteView(LoginRequiredMixin,UserPassesTestMixin,UpdateView):
         declare fields in the model to be affected
     '''
     model=Image
+    template_name='insta/post-confirm-delete.html'
 
     def test_func(self):
         '''
