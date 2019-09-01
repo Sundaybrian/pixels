@@ -9,7 +9,11 @@ from django.dispatch import receiver
 
 from .models import Profile
 
-'''
+
+
+@receiver(post_save, sender=User)
+def create_profile(sender, instance, created, **kwargs):
+    '''
     post_save:is the signal that is fired after and objecte is saved
 
     User:model is the sender of the signal
@@ -22,21 +26,19 @@ from .models import Profile
 
     Profile.objects.create(user=instance):create a profile obj with the instance of the user that was created
 
-'''
-
-@receiver(post_save,sender=User)
-def create_profile(sender,instance,created,**kwargs):
+    '''
     if created:
         Profile.objects.create(user=instance)
 
 
-@receiver(post_save,sender=User)
-def save_profile(sender,instance,created,**kwargs):
+@receiver(post_save, sender=User)
+def save_profile(sender, instance, **kwargs):
     '''
     save profile once a user is saved
     '''
     instance.profile.save()
-  
+
+
 
 
 
