@@ -8,8 +8,9 @@
         <div class="card-header">
           <img src="{{post.author.profile.profile_photo.url}}" class="rounded-circle" alt="">
           <h5 class="card-title">
-            <a href="{{post/post.pk}}"></a>
-            {{post.img_name}}</h5>
+            <a href="{% url 'post-detail' post.id %}">
+            {{post.img_name}}</a>
+          </h5>
         </div>
         <img src="{{post.poster.url}}" class="card-img-top">
           <div class="card-footer text-muted">
