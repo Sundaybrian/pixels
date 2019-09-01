@@ -6,6 +6,8 @@ from tinymce.models import HTMLField
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import Http404
 
+from django.urls import reverse
+
 
 # Create your models here.
 
@@ -30,6 +32,10 @@ class Image(models.Model):
 
     def __str__(self):
         return f'Image{self.img_name}--{self.img_caption}'
+
+
+    def get_absolute_url(self):
+        return reverse('post-detail',kwargs={'pk':self.pk})
 
 
     def save_img(self):
