@@ -92,4 +92,25 @@ def postDetail(request,pk):
     return render(request,'insta/post-detail.html',{'post':img,'user':request.user})
 
 
+def search_results(request):
+    '''
+    view function that fetches posts based on search terms
+    '''  
+
+    if 'post' in request.GET and request.GET["post"]:
+        search_term=request.GET.get('post')
+        search_posts=Image.search(search_term)
+        message=f"{search_term}"
+
+        return render(request,'insta/search.html',{'message':message,"posts":search_posts})
+
+    else:
+        message='You havent searched for any term'
+        return render(request,'insta/search.html',{'message':message})    
+
+
+
+
+
+
 

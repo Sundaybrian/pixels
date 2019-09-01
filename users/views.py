@@ -51,18 +51,20 @@ def profile(request):
     return render(request,'user/profile.html',context)
 
 
-def user(request,user_id):
+def user(request,pk):
     '''
     view function to redirect to a user profile
     '''
     try:
-        user=User.objects.get(pk=user_id)
+        user=User.objects.get(pk=pk)
         
     except ObjectDoesNotExist:
         raise Http404
         assert False
 
-    return render(request,'insta/profile.html')
+    posts=user.image_set.all()
+    return render(request,'user/user-profile.html',{'posts':posts,'user':user})    
+
 
 
 

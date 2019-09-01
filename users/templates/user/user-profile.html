@@ -1,0 +1,26 @@
+{% extends 'insta/base.html'%}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8 jumbotron">
+                <img src="{{user.profile.profile_photo.url}}" class="rounded-circle img-fluid" alt="">
+                <h5>{{user.username}}</h5>
+                <p>{{user.email}}</p>
+                <p>{{user.bio}}</p>
+    
+            <!-- start images div here -->
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+
+    <div class="row user posts">
+      <h1>Posts</h1>
+      {% for post in posts  %}
+      <p>{{post.img_name}}</p>
+      <img src="{{post.poster.url}}" class="img-responsive"alt="" srcset="">
+      {% endfor %}
+
+    </div>
+
+{% endblock content %}

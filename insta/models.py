@@ -83,6 +83,8 @@ class Image(models.Model):
 
         imgs=cls.objects.filter(Q(img_name__icontains=search_term) |Q(author__username__icontains=search_term)  | Q(img_caption__icontains=search_term)  | Q(tags__tag_name__icontains=search_term))
 
+        return imgs
+
     @classmethod
     def get_img_by_id(cls,id):
 
