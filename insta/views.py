@@ -25,7 +25,7 @@ def newInstaPost(request):
         return redirect('insta-home')    
     else:
         form=NewInstaPost()
-    return redirect(request,'new_insta.html',{'form':form})        
+    return redirect(request,'insta/new_insta.html',{'form':form})        
 
 
 
