@@ -12,7 +12,10 @@
         <img src="{{post.poster.url}}" class="card-img-top">
           <div class="card-footer text-muted">
             <p>Posted on {{post.date_posted}} by {{post.author.username}}</p>
-            <p>{{post.img_caption}}</p>
+            <p> {% autoescape on %}
+                {{post.img_caption| safe}}
+               {% endautoescape %}
+              </p>
         </div>
     </div>
   

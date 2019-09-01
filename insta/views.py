@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse,Http404
+from django.contrib import messages
 from .models import Image,Comment,Like
 from django.contrib.auth.decorators import login_required
 from .forms import NewInstaPost
@@ -19,9 +20,11 @@ def newInstaPost(request):
     if request.method=='POST':
         form=NewInstaPost(request.POST,request.FILES)
         if form.is_valid():
+            img_name=form.cleaned_data.get('img_name')
             img=form.save(commit=False)
             img.author=current_user
             img.save()
+            messages.success(request,f'Post Created for {img_name}')
         return redirect('insta-home')    
     else:
         form=NewInstaPost()

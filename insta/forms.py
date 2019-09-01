@@ -1,5 +1,5 @@
 from django import forms
-from .models import Image
+from .models import Image,tags
 
 class NewInstaPost(forms.ModelForm):
     class Meta:
@@ -8,3 +8,11 @@ class NewInstaPost(forms.ModelForm):
         widgets={
             'tags':forms.CheckboxSelectMultiple(),
         }
+
+class AddTagsToPost(forms.ModelForm):
+    '''
+    attempt at adding tags to a post
+    '''
+    class Meta:
+        model=tags
+        fields=['tag_name']        
