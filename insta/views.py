@@ -71,6 +71,7 @@ class PostDeleteView(LoginRequiredMixin,UserPassesTestMixin,DeleteView):
     '''
     model=Image
     template_name='insta/post-confirm-delete.html'
+    success_url='/'
 
     def test_func(self):
         '''
@@ -88,7 +89,7 @@ def postDetail(request,pk):
     '''
     img=Image.get_img_by_id(pk)
    
-    return render(request,'insta/post-detail.html',{'post':img})
+    return render(request,'insta/post-detail.html',{'post':img,'user':request.user})
 
 
 
