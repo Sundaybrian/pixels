@@ -4,10 +4,8 @@ from .models import Image,tags
 class NewInstaPost(forms.ModelForm):
     class Meta:
         model=Image
-        exclude=['author','date_posted','last_modified']
-        widgets={
-            'tags':forms.CheckboxSelectMultiple(),
-        }
+        exclude=['author','date_posted','last_modified','tags']
+   
 
 class AddTagsToPost(forms.ModelForm):
     '''
