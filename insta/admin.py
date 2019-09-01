@@ -3,8 +3,10 @@ from .models import Comment,Image,tags,Like
 
 
 # Register your models here.
+class ImageAdmin(admin.ModelAdmin):
+    filter_horizontal=('tags',)
 
 admin.site.register(Comment)
-admin.site.register(Image)
+admin.site.register(Image,ImageAdmin)
 admin.site.register(tags)
 admin.site.register(Like)

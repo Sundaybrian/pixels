@@ -73,7 +73,7 @@ class Comment(models.Model):
     model to create comments
     '''  
     image=models.ForeignKey(Image,on_delete=models.CASCADE),
-    comment_owner=models.ForeignKey(User,blank=True,on_delete=models.CASCADE)
+    comment_owner=models.ForeignKey(User,blank=True,null=True,on_delete=models.CASCADE)
     comment_content=models.TextField()
     
 
@@ -111,16 +111,7 @@ class Like(models.Model):
     liker=models.ForeignKey(User,on_delete=models.CASCADE)
     image=models.ForeignKey(Image,on_delete=models.CASCADE)
 
-    def save_like(self):
-        '''
-        saving a like
-        '''
-        pass
 
-    def like_count():
-        '''
-        '''
-        pass
 
         
     
