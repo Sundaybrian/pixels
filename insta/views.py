@@ -5,6 +5,9 @@ from .models import Image,Comment,Like
 from django.contrib.auth.decorators import login_required
 from .forms import NewInstaPost,AddTagsToPost
 from django.core.exceptions import ObjectDoesNotExist
+
+from django.views.generic import UpdateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 
 def home(request):
@@ -33,7 +36,25 @@ def newInstaPost(request):
     else:
         form=NewInstaPost()
         tagForm=AddTagsToPost()
-    return render(request,'insta/new_insta.html',{'form':form,'tagForm':tagForm})   
+    return render(request,'insta/new_insta.html',{'form':form,'tagForm':tagForm})
+
+
+class PostUpdateView(LoginRequiredMixin,UpdateView):
+    '''
+    class view method to update the post form
+        declare the model to be affected
+        declare the template to be used
+        declare fields in the model to be affected
+    '''
+    model=Image
+    template_name='insta/post-update.html'
+    fields=['img_name','img_caption']
+
+    def form_valid(self,form):
+        form.instance.author=self.request.user
+        return super().form_valid(form)
+
+
 
 
 def postDetail(request,pk):
