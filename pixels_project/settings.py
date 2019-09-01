@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'bootstrap4',
     'insta',
     'users',
+    'tinymce',
     'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
