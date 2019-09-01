@@ -6,8 +6,8 @@ from django.contrib.auth.decorators import login_required
 from .forms import NewInstaPost,AddTagsToPost
 from django.core.exceptions import ObjectDoesNotExist
 
-from django.views.generic import UpdateView
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import UpdateView,DeleteView
+from django.contrib.auth.mixins import (LoginRequiredMixin,UserPassesTestMixin)
 # Create your views here.
 
 def home(request):
@@ -39,7 +39,7 @@ def newInstaPost(request):
     return render(request,'insta/new_insta.html',{'form':form,'tagForm':tagForm})
 
 
-class PostUpdateView(LoginRequiredMixin,UpdateView):
+class PostUpdateView(LoginRequiredMixin,UserPassesTestMixin,UpdateView):
     '''
     class view method to update the post form
         declare the model to be affected
@@ -54,6 +54,29 @@ class PostUpdateView(LoginRequiredMixin,UpdateView):
         form.instance.author=self.request.user
         return super().form_valid(form)
 
+    def test_func(self):
+        '''
+        check to see if the current user is the owner of the post
+        '''    
+        post=self.get_object()
+        return self.request.user==post.author
+
+
+class PostDeleteView(LoginRequiredMixin,UserPassesTestMixin,UpdateView):
+    '''
+    class view method to update the post form
+        declare the model to be affected
+        declare the template to be used
+        declare fields in the model to be affected
+    '''
+    model=Image
+
+    def test_func(self):
+        '''
+        check to see if the current user is the owner of the post
+        '''    
+        post=self.get_object()
+        return self.request.user==post.author
 
 
 
