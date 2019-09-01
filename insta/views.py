@@ -10,3 +10,8 @@ def home(request):
     
     return render(request,'insta/home.html',{'posts':posts})
 
+
+
+
+
+

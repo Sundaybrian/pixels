@@ -31,8 +31,5 @@ class ProfileUpdateForm(forms.ModelForm):
         model=Profile
         fields=['profile_photo']
 
-class CreatePostForm(forms.ModelForm):
-    '''
-    create an insta post
-    '''
-            
+
+
