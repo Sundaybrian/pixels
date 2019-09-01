@@ -10,6 +10,7 @@
           <h5 class="card-title">
             {{post.img_name}}
           </h5>
+          <a href="{% url 'post-update' post.id %}" class="btn btn-primary">Update</a>
         </div>
         <img src="{{post.poster.url}}" class="card-img-top">
           <div class="card-footer text-muted">

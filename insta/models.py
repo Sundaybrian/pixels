@@ -35,6 +35,13 @@ class Image(models.Model):
 
 
     def get_absolute_url(self):
+        '''
+        fix for the get absolute url error after using the class view to update the view
+
+            **thus creating a url for a model object **
+            
+
+        '''
         return reverse('post-detail',kwargs={'pk':self.pk})
 
 
