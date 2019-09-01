@@ -4,6 +4,8 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import Profile
 
+from django.contrib.auth.models import User
+
 # Create your views here.
 def register(request):
     if request.method=='POST':
@@ -34,9 +36,14 @@ def profile(request):
         usrForm=UserUpdateForm(instance=request.user)
         profForm=ProfileUpdateForm(instance=request.user.profile) 
 
+
+    user=User.objects.get(pk=request.user.id)
+    posts=user.image_set.all()
+
     context={
         'usrForm':usrForm,
-        'profForm':profForm
+        'profForm':profForm,
+        'posts':posts
     }
     return render(request,'user/profile.html',context)
 

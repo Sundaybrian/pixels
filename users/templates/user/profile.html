@@ -47,4 +47,14 @@
           </div>
     <!-- end modal update -->
 
+
+    <div class="row user posts">
+      <h1>Posts</h1>
+      {% for post in posts  %}
+      <p>{{post.img_name}}</p>
+      <img src="{{post.poster.url}}" class="img-responsive"alt="" srcset="">
+      {% endfor %}
+
+    </div>
+
 {% endblock content %}
