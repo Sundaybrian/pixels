@@ -1,9 +1,8 @@
-// masonry
+
 // $('.grid').masonry({
 //     itemSelector:'.grid-item',
-//     columnWidth:110,
-//     fitWidth:true,
-//     gutter:0
+//     columnWidth:160,
+//     gutter:10
 // })
 
 
@@ -12,7 +11,8 @@ var $grid = $('.grid').imagesLoaded( function() {
     $grid.masonry({
       itemSelector: '.grid-item',
       percentPosition: true,
-      columnWidth: '.grid-sizer'
+      columnWidth: '.grid-sizer',
+      gutter:10
     }); 
   });
 
