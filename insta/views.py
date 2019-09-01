@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse,Http404
 from .models import Image,Comment,Like
 from django.contrib.auth.decorators import login_required
@@ -25,7 +25,7 @@ def newInstaPost(request):
         return redirect('insta-home')    
     else:
         form=NewInstaPost()
-    return redirect(request,'insta/new_insta.html',{'form':form})        
+    return render(request,'insta/new_insta.html',{'form':form})        
 
 
 
