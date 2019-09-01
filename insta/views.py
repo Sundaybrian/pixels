@@ -33,8 +33,21 @@ def newInstaPost(request):
     else:
         form=NewInstaPost()
         tagForm=AddTagsToPost()
-    return render(request,'insta/new_insta.html',{'form':form,'tagForm':tagForm})        
+    return render(request,'insta/new_insta.html',{'form':form,'tagForm':tagForm})   
 
+
+def postDetail(request,pk):
+    '''
+    view function that leads to a single post
+    '''
+    try:
+        img=Image.objects.get(id=pk)
+        
+    except ValueError:
+        raise Http404()
+        assert False
+    
+    return render(request,'insta/post-detail.html',{'post':img})
 
 
 
