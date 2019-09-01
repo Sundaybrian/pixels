@@ -10,7 +10,7 @@
 
 body,html{
     background: var(--bg-color) !important;
-    color: var(--text-color);
+    color: #333;
 }
 
 i.fa{
@@ -94,6 +94,47 @@ ul.navbar-nav a.nav-item.nav-link{
   .card-footer{
       background: #fff !important;
   }
+
+
+  /* =================profile========================= */
+
+  .card-body.profile{
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(60px,1fr));
+      
+  }
+
+  .card-body >.card-img > img{
+    height:150px;
+    width:150px;
+    margin-right:16px;
+    border:1px solid #ddd;
+
+}
+
+.card-body .card-info{
+    display: flex;
+    flex-direction: column;
+}
+
+.card-info >.user-utils{
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.user-utils h5{
+    padding-right: 8px;
+}
+
+.card-info .user-details{
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+  /* ==================end profile=================== */
   
 
 
