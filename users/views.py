@@ -5,6 +5,9 @@ from django.contrib.auth.decorators import login_required
 from .models import Profile
 
 from django.contrib.auth.models import User
+from django.core.exceptions import ObjectDoesNotExist
+from django.http import Http404
+
 
 # Create your views here.
 def register(request):
@@ -47,6 +50,19 @@ def profile(request):
     }
     return render(request,'user/profile.html',context)
 
+
+def user(request,user_id):
+    '''
+    view function to redirect to a user profile
+    '''
+    try:
+        user=User.objects.get(pk=user_id)
+        
+    except ObjectDoesNotExist:
+        raise Http404
+        assert False
+
+    return render(request,'insta/profile.html')
 
 
 
