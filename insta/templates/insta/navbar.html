@@ -30,10 +30,11 @@
               <i class="fa fa-plus-circle fa-2x"></i>
             </a>
 
-            <a href="{% url 'logout' %}" class="nav-item nav-link"></a>
+            <a href="{% url 'logout' %}" class="nav-item nav-link"><i class="fa fa-sign-out fa-2x"></i></a>
             {% else %}
-            <a href="{% url 'login' %}" class="nav-item nav-link">Login</a>
-            <a href="{% url 'register' %}" class="nav-item nav-link">Register</a>
+            <a href="{% url 'login' %}" class="nav-item nav-link"><i class="fa fa-sign-in fa-2x"></i></a>
+            <a href="{% url 'register' %}" class="nav-item nav-link"><i class="fa fa-arrow-circle-o-up fa-2x"></i>
+               Register</a>
             
             {% endif %}
           </ul>

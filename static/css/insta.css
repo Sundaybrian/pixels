@@ -34,6 +34,9 @@ ul.navbar-nav a.nav-item >i.fa{
     padding: 0 8px;
 }
 
+ul.navbar-nav a.nav-item.nav-link{
+    color: #222 !important;
+}
 /* ===============end navbar====================== */
 
 
@@ -41,6 +44,7 @@ ul.navbar-nav a.nav-item >i.fa{
 .card-header{
     display: flex;
     background: #fff !important;
+    
 }
 .card-header > img{
     height:60px;
@@ -50,6 +54,17 @@ ul.navbar-nav a.nav-item >i.fa{
     margin-bottom: 4px;
     position: relative;
 }
+
+.post-header{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.post-user-btn{
+    margin-left: 20px;
+}
+
+
 
 .card-header .post-data{
     padding-bottom: 1px;

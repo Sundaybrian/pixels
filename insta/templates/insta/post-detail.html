@@ -4,20 +4,30 @@
   <div class="col-md-2"></div>
   <div class="col-md-8">
   
-      <div class="card mb-3">
+    <div class="card mb-3">
         <div class="card-header">
           <img src="{{post.author.profile.profile_photo.url}}" class="rounded-circle" alt="">
-          <h5 class="card-title">
-            {{post.img_name}}
-          </h5>
-         {% if post.author == user %}
-         <a href="{% url 'post-update' post.id %}" class="btn btn-sm btn-outline-primary">Update</a>
-         <a href="{% url 'post-delete' post.id %}" class="btn btn-sm btn-outline-danger">Delete</a>
-         {% endif %}
+          <div class="post-header">
+             <div class="post-data">
+                <h5 class="card-title">
+                    <a href="{% url 'user-profile' post.author.id %}">{{post.author.username}}</a>
+                  </h5>
+                  <small class="text-muted">{{post.date_posted |date:"F,y d"}}</small>
+             </div>
+             <div class="post-user-btn">
+                {% if post.author == user %}
+                <a href="{% url 'post-update' post.id %}" class="btn btn-sm btn-outline-primary"><i class="fa fa-refresh"></i></a>
+                <a href="{% url 'post-delete' post.id %}" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i></a>
+                {% endif %}
+             </div>
+          </div>
         </div>
         <img src="{{post.poster.url}}" class="card-img-top">
           <div class="card-footer text-muted">
-            <p>Posted on {{post.date_posted}} by {{post.author.username}}</p>
+              <h2 class="post-title text-center">
+                  <a href="{% url 'post-detail' post.id %}">
+                      {{post.img_name}}</a>
+                </h2>
             <p> {% autoescape on %}
                 {{post.img_caption| safe}}
                {% endautoescape %}
@@ -25,6 +35,7 @@
   
         </div>
     </div>
+
 
 
   </div>
