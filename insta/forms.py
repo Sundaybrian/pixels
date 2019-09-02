@@ -20,5 +20,6 @@ class NewComment(forms.ModelForm):
     '''
     form to create a comment
     '''
-    model=Comment
-    field=['comment_content']        
+    class Meta:
+        model=Comment
+        fields=['comment_content']        

@@ -3,7 +3,7 @@ from django.http import HttpResponse,Http404
 from django.contrib import messages
 from .models import Image,Comment,Like
 from django.contrib.auth.decorators import login_required
-from .forms import NewInstaPost,AddTagsToPost
+from .forms import NewInstaPost,AddTagsToPost,NewComment
 from django.core.exceptions import ObjectDoesNotExist
 
 from django.views.generic import UpdateView,DeleteView
@@ -11,10 +11,22 @@ from django.contrib.auth.mixins import (LoginRequiredMixin,UserPassesTestMixin)
 # Create your views here.
 
 def home(request):
-  
-    posts=Image.get_imgs()
+    current_user=request.user
+    if request.method=='POST':
+        form=NewComment(request.POST)
+        if form.is_valid():
+            comment=form.save(commit=False)
+            comment.comment_owner=current_user
+
+            comment.save()
+          
+            messages.success(request,f'Comment made')
+        return redirect('insta-home')    
+    else:
+        form=NewComment()
     
-    return render(request,'insta/home.html',{'posts':posts})
+    posts=Image.get_imgs()  
+    return render(request,'insta/home.html',{'posts':posts,'form':form})
 
 
 @login_required
@@ -113,22 +125,18 @@ def search_results(request):
 def newComment(request):
     current_user=request.user
     if request.method=='POST':
-        form=NewInstaPost(request.POST,request.FILES)
-        tagForm=AddTagsToPost(request.POST)
-        if form.is_valid() and tagForm.is_valid():
-            img_name=form.cleaned_data.get('img_name')
-            img=form.save(commit=False)
-            img.author=current_user
+        form=NewComment(request.POST)
+        if form.is_valid():
+            comment=form.save(commit=False)
+            comment.comment_owner=current_user
 
-            img.save()
-            tagForm.save()
-
-            messages.success(request,f'Post Created for {img_name}')
+            comment.save()
+          
+            messages.success(request,f'Comment made')
         return redirect('insta-home')    
     else:
-        form=NewInstaPost()
-        tagForm=AddTagsToPost()
-    return render(request,'insta/new_insta.html',{'form':form,'tagForm':tagForm})        
+        form=NewComment()
+    return render(request,'insta/insta-home',{'form':form})        
 
 
 

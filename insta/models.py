@@ -107,7 +107,7 @@ class Comment(models.Model):
     '''  
     image=models.ForeignKey(Image,on_delete=models.CASCADE),
     comment_owner=models.ForeignKey(User,blank=True,null=True,on_delete=models.CASCADE)
-    comment_content=models.TextField()
+    comment_content=models.CharField(max_length=300,blank=True)
     
 
     def save_comment(self):
@@ -134,7 +134,7 @@ class Comment(models.Model):
         return comments 
 
     def __str__(self):
-        return self.comment          
+        return self.comment_content          
 
 
 class Like(models.Model):
