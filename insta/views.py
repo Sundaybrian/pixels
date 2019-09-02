@@ -10,6 +10,8 @@ from django.views.generic import UpdateView,DeleteView
 from django.contrib.auth.mixins import (LoginRequiredMixin,UserPassesTestMixin)
 # Create your views here.
 
+
+@login_required
 def home(request):
     current_user=request.user
     if request.method=='POST':
@@ -100,8 +102,9 @@ def postDetail(request,pk):
     #     
     '''
     img=Image.get_img_by_id(pk)
+    comments=Comment.get_comments(pk)
    
-    return render(request,'insta/post-detail.html',{'post':img,'user':request.user})
+    return render(request,'insta/post-detail.html',{'post':img,'user':request.user,'comments':comments})
 
 
 def search_results(request):

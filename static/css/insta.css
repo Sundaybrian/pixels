@@ -143,6 +143,28 @@ ul.navbar-nav a.nav-item.nav-link{
     flex-direction: column;
 }
 
+/* ===============Post detail============================== */
+
+.post-comment-body{
+  display:flex;
+}
+
+.post-comment-body > img{
+  height:60px;
+  width:60px;
+  margin-right:16px;
+  border:1px solid #ddd;
+  margin-bottom: 4px;
+  position: relative;
+}
+
+.post-comment-header > .post-comment-data{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* ===============end post detail============================== */
+
 /* ===============Section masonry============================== */
 
 section.masonry-grid {
