@@ -98,8 +98,7 @@ class PostDeleteView(LoginRequiredMixin,UserPassesTestMixin,DeleteView):
 
 def postDetail(request,pk):
     '''
-    view function that leads to a single post
-    #     
+    view function that leads to a single post    
     '''
     img=Image.get_img_by_id(pk)
     comments=Comment.get_comments(pk)
@@ -124,22 +123,7 @@ def search_results(request):
         return render(request,'insta/search.html',{'message':message})    
 
 
-@login_required
-def newComment(request):
-    current_user=request.user
-    if request.method=='POST':
-        form=NewComment(request.POST)
-        if form.is_valid():
-            comment=form.save(commit=False)
-            comment.comment_owner=current_user
-
-            comment.save()
-          
-            messages.success(request,f'Comment made')
-        return redirect('insta-home')    
-    else:
-        form=NewComment()
-    return render(request,'insta/insta-home',{'form':form})        
+       
 
 
 
