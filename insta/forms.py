@@ -1,5 +1,5 @@
 from django import forms
-from .models import Image,tags
+from .models import Image,tags,Comment
 
 class NewInstaPost(forms.ModelForm):
     class Meta:
@@ -14,3 +14,11 @@ class AddTagsToPost(forms.ModelForm):
     class Meta:
         model=tags
         fields=['tag_name']        
+
+
+class NewComment(forms.ModelForm):
+    '''
+    form to create a comment
+    '''
+    model=Comment
+    field=['comment_content']        

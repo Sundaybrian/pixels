@@ -23,10 +23,13 @@
                       {{post.img_name}}</a>
                 </h2>
             <p> {% autoescape on %}
-                {{post.img_caption| safe}}
+                {{post.img_caption| safe|truncatechars:80}}
                {% endautoescape %}
               </p>
-  
+              <div class="insta-btns">
+                <a href=""><i class="fa fa-heart-o fa-2x"></i></a>
+                <a href=""><i class="fa fa-comments-o fa-2x"></i></a>
+              </div>
         </div>
     </div>
   

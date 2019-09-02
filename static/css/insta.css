@@ -95,6 +95,16 @@ ul.navbar-nav a.nav-item.nav-link{
       background: #fff !important;
   }
 
+  .insta-btns a{
+    display: inline-block;
+    margin:0 12px;
+    
+  }
+
+  .insta-btns a >i.fa{
+    color:#333;
+  }
+
 
   /* =================profile========================= */
 
