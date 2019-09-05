@@ -36,7 +36,7 @@ As a user I would like:
 | Delete a Post | Click Trash Icon| Authenticated user i.e owner of the post is prompted to delete|
 | Update a Post | Click Update Icon| Authenticated user i.e owner of the post is redireted to a foem field to update the post|
 | Update profile | Click edit profile | Pop up modal to update your details |
-| Search | Click edit profile | Pop up modal to update your details |
+| Search | type on search field| Redirect to a results page if query exists |
 
 
 ## Setup/Installation Requirements
